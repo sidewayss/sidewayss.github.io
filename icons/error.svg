@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" height="48">
+  <path fill="#F00" d="M14.0588745030457, 0
+                       L33.9411254969543, 0
+                        48              ,14.0588745030457
+                        48              ,33.9411254969543
+                        33.9411254969543,48
+                        14.0588745030457,48
+                         0              ,33.9411254969543
+                         0              ,14.0588745030457 Z"/>
+
+  <rect fill="#FFF" x="8" y="20" width="32" height="8" transform="rotate( 45 24 24)"/>
+  <rect fill="#FFF" x="8" y="20" width="32" height="8" transform="rotate(-45 24 24)"/>
+</svg>
