@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://elements.colorjs.io/index.js" type="module"></script>
+    <script type="module">
+      import Color from "https://colorjs.io/dist/color.js";
+      document.addEventListener("DOMContentLoaded", load);
+      function load() {
+          const
+          ColorSpace = Color.Space,           // the ColorSpace class
+          registry   = Color.spaces,          // all the registered color spaces
+          sRGBLinear = registry["srgb-linear"],
+          sRGB       = registry["srgb"],
+          sRGB255    = new ColorSpace({       // new custom space
+              id:    "rgb255",
+              name:  "sRGB (0-255)",
+              base:   sRGBLinear,
+              cssId:  "rgb",
+              coords: {},
+              fromBase: rgb => sRGB.fromBase(rgb).map(n => n * 255 ),
+              toBase:   rgb => sRGB.toBase(  rgb .map(n => n / 255)),
+              formats: {
+                  rgb255: {
+                      type: "custom",
+                      coords:Array(3).fill("<number>[0, 255]"),
+                      parse: () => false,
+                      serialize: (coords, alpha) => {
+                          coords = coords.map(n => n.toFixed(0)).join(E.sp);
+                          if (Is.def(alpha))
+                              coords += ` / ${alpha}`;
+
+                          return `rgb(${coords})`;
+                      }
+                  }
+              }
+          }),
+          coords = sRGB255.coords,
+          range  = {range:[0, 255]};
+
+          [..."rgb"].forEach(char => coords[char] = range);
+          ColorSpace.register(sRGB255);
+          customElements.whenDefined("space-picker").then(() => {
+          });
+      }
+    </script>
+    <style>
+      color-slider:focus,
+      #space-picker:focus {
+        padding: 4px;
+        border: 2px dashed red;
+      }
+    </style>
+  </head>
+  <body>
+    <input/>
+    <div style="display:flex">
+      <label for="color-slider">Label:</label>
+      <color-slider id="color-slider" space="hsl" stops="oklch(90% 50% 100), darkcyan, indigo"></color-slider>
+    </div>
+    <div style="display:flex">
+      <label for="space-picker">Label:</label>
+      <space-picker id="space-picker" value="hsl"></space-picker>
+    </div>
+  </body>
+</html>
