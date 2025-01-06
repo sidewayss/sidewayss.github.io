@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>wc-bugs</title>
+    <style>
+      div {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+      }
+      my-elm1, my-elm2 {
+        padding:1rem;
+        background-color:#DDD;
+        border:1px dotted black;
+        font-size:0; /* REQUIRED: extra height for element = 0.25 * font-size */
+      }
+      my-elm1:focus, my-elm2:focus {
+        background-color:lightblue;
+      }
+    </style>
+    <script src="wc-bugs.js" type="module"></script>
+  </head>
+  <body style="font-family:monospace; font-size:3rem;">
+    <template id="t1">
+      <svg viewbox="0 0 16 16" width="48" height="48">
+        <rect width="16" height="16"/>
+      </svg>
+    </template>
+    <div>
+      <label for="elm">&lt;svg&gt;:</label>
+      <my-elm1 id="elm"></my-elm1>
+      <span>span</span>
+      <my-elm1 id="elmXtra" style="font-size:2rem;"></my-elm1>
+    </div>
+    <template id="t2">
+      <input value="testing..."/>
+    </template>
+    <div style="display:flex; justify-content:center;">
+      <label for="elm2">&lt;input&gt;:</label>
+      <my-elm2 id="elm2"></my-elm2>
+      <span>span</span>
+    </div>
+  </body>
+</html>
