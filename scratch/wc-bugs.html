@@ -7,15 +7,25 @@
         display:flex;
         justify-content:center;
         align-items:center;
+        margin:0.5rem 0;
       }
-      my-elm1, my-elm2 {
+      label {
+        margin-right:0.5rem;
+      }
+      my-elm1, my-elm2, my-elm3, my-elm4, my-elm5 {
         padding:1rem;
         background-color:#DDD;
         border:1px dotted black;
-        font-size:0; /* REQUIRED: extra height for element = 0.25 * font-size */
+        font-size:0; /* it's this or change display type to flex or grid */
       }
       my-elm1:focus, my-elm2:focus {
         background-color:lightblue;
+      }
+      #elm3::part(rect) {
+        fill:blue;
+      }
+      #elm4:active, #elm5:active {
+        fill:green;
       }
     </style>
     <script src="wc-bugs.js" type="module"></script>
@@ -27,8 +37,8 @@
       </svg>
     </template>
     <div>
-      <label for="elm">&lt;svg&gt;:</label>
-      <my-elm1 id="elm"></my-elm1>
+      <label for="elm1">1. &lt;svg&gt;:</label>
+      <my-elm1 id="elm1"></my-elm1>
       <span>span</span>
       <my-elm1 id="elmXtra" style="font-size:2rem;"></my-elm1>
     </div>
@@ -36,9 +46,39 @@
       <input value="testing..."/>
     </template>
     <div style="display:flex; justify-content:center;">
-      <label for="elm2">&lt;input&gt;:</label>
+      <label for="elm2">2. &lt;input&gt;:</label>
       <my-elm2 id="elm2"></my-elm2>
       <span>span</span>
+    </div>
+    <template id="t3">
+      <svg viewbox="0 0 16 16" width="48" height="48">
+        <defs>
+          <rect id="rect" part="rect" width="16" height="16"/>
+        </defs>
+        <use href="#rect"/>
+      </svg>
+    </template>
+    <div>
+      <label for="elm3">3. ::part(defs):</label>
+      <my-elm3 id="elm3"></my-elm3>
+    </div>
+    <template id="t4">
+      <svg viewbox="0 0 16 16" width="48" height="48">
+        <defs>
+          <rect id="click0" width="16" height="16"/>
+          <rect id="click1" width="12" height="12" x="2" y="2" rx="6" ry="6"/>
+          <rect id="mousedown" width="8" height="8" x="4" y="4" rx="2" ry="2"/>
+        </defs>
+        <use id="use" href="#click0"/>
+      </svg>
+    </template>
+    <div>
+      <label for="elm4">4. no mousedown:</label>
+      <my-elm4 id="elm4"></my-elm4>
+    </div>
+    <div>
+      <label for="elm5">5. mousedown=href:</label>
+      <my-elm5 id="elm5"></my-elm5>
     </div>
   </body>
 </html>
