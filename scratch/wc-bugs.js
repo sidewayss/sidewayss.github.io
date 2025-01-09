@@ -56,8 +56,26 @@ class MyElm5 extends MyElm4 {
         this._use.setAttribute("href", "#mousedown");
     }
 }
+class MyElm6 extends BaseElm {
+    #bool;
+    constructor() {
+        super("t6");
+        this.#bool = false;
+        this._use  = this.shadowRoot.getElementById("use");
+        this.addEventListener("click", this.#click);
+        this.addEventListener("mousedown", this.#mouseDown);
+    }
+    #click() {
+        this.#bool = !this.#bool;
+        this._use.setAttribute("href", "#click" + Number(this.#bool));
+    }
+    #mouseDown() {
+        this._use.setAttribute("href", "#mousedown");
+    }
+}
 customElements.define("my-elm1", MyElm1);
 customElements.define("my-elm2", MyElm2);
 customElements.define("my-elm3", MyElm3);
 customElements.define("my-elm4", MyElm4);
 customElements.define("my-elm5", MyElm5);
+customElements.define("my-elm6", MyElm6);

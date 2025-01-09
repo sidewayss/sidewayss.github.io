@@ -12,7 +12,7 @@
       label {
         margin-right:0.5rem;
       }
-      my-elm1, my-elm2, my-elm3, my-elm4, my-elm5 {
+      my-elm1, my-elm2, my-elm3, my-elm4, my-elm5, my-elm6 {
         padding:1rem;
         background-color:#DDD;
         border:1px dotted black;
@@ -24,7 +24,7 @@
       #elm3::part(rect) {
         fill:blue;
       }
-      #elm4:active, #elm5:active {
+      #elm4:active, #elm5:active, #elm6:active {
         fill:green;
       }
     </style>
@@ -79,6 +79,20 @@
     <div>
       <label for="elm5">5. mousedown=href:</label>
       <my-elm5 id="elm5"></my-elm5>
+    </div>
+    <template id="t6">
+      <svg viewbox="0 0 16 16" width="48" height="48" pointer-events="none">
+        <defs>
+          <rect id="click0" width="16" height="16"/>
+          <rect id="click1" width="12" height="12" x="2" y="2" rx="6" ry="6"/>
+          <rect id="mousedown" width="8" height="8" x="4" y="4" rx="2" ry="2"/>
+        </defs>
+        <use id="use" href="#click0"/>
+      </svg>
+    </template>
+    <div>
+      <label for="elm6">6. no pointer-events:</label>
+      <my-elm6 id="elm6"></my-elm6>
     </div>
   </body>
 </html>
